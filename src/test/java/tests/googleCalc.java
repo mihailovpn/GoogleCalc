@@ -35,9 +35,9 @@ public class googleCalc {
     @Test
     @DisplayName("Кейс 1. Проверка операций с целыми числами")
     public  void test1() {
-        calcPage.enterExpression("((1+2)*3)−(40÷5)");
+        calcPage.enterExpression("(1 + 2) × 3 − 40 ÷ 5 ");
         assertAll(
-                () -> assertEquals("((1 + 2) × 3) - (40 ÷ 5) =", calcPage.getCalcInput()),
+                () -> assertEquals("(1 + 2) × 3 - 40 ÷ 5 =", calcPage.getCalcInput()),
                 () -> assertEquals("1", calcPage.getCalcOutput())
         );
     }
