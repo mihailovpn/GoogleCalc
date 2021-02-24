@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,23 +29,32 @@ public class googleCalc {
     @BeforeEach
     public void setup() {
         driver.get("http://www.google.com");
+        searchPage.search("Калькулятор");
     }
 
     @Test
     @DisplayName("Кейс 1. Проверка операций с целыми числами")
     public  void test1() {
-        searchPage.search("Калькулятор");
-        //calcPage.enterCalcButton("(");
-/*        assertAll(
+        calcPage.enterExpression("((1+2)*3)-(40÷5)");
+        assertAll(
                 () -> assertEquals("((1 + 2) * 3) - (40 / 5) =", calcPage.getCalcInput()),
                 () -> assertEquals("1", calcPage.getCalcOutput())
-        );*/
+        );
+    }
+
+    @Test
+    @DisplayName("Кейс 2. Проверка деления на ноль")
+    public  void test2() {
+        calcPage.enterExpression("6÷0");
+        assertAll(
+                () -> assertEquals("6 ÷ 0 =", calcPage.getCalcInput()),
+                () -> assertEquals("Infinity", calcPage.getCalcOutput())
+        );
     }
 
     @Test
     @DisplayName("Кейс 3. Проверка ошибки при отсутствии значения")
     public  void test3() {
-        searchPage.search("Калькулятор");
         calcPage.calcSin();
         assertAll(
                 () -> assertEquals("sin() =", calcPage.getCalcInput()),
@@ -52,8 +62,8 @@ public class googleCalc {
         );
     }
 
-/*    @AfterAll
+    @AfterAll
     public static void teardown() {
         driver.quit();
-    }*/
+    }
 }

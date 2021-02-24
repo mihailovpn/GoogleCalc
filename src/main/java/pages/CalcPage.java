@@ -5,14 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class CalcPage {
-
-    @FindBy(css = "div.ULSxyf h2.Uo8X3b")
-    public static WebElement calcPage;
 
     @FindBy(css = "span[jsname='ubtiRe']")
     public static WebElement calcInput;
@@ -29,10 +28,6 @@ public class CalcPage {
     @FindBy(css = "div[jsname='Pt8tGc']")
     public WebElement equalsButton;
 
-    public String getCalcPage() {
-        return calcPage.getText();
-    }
-
     public String getCalcInput() {
         return calcInput.getText();
     }
@@ -41,15 +36,26 @@ public class CalcPage {
         return calcOutput.getText();
     }
 
+    public void enterExpression(String expression) {
+        char[] chars = expression.toCharArray();
+        for (char aChar : chars) {
+            enterButton(String.valueOf(aChar));
+        }
+        equalsButton.click();
+    }
+
+    public void enterButton(String buttonName) {
+        calcButtons.forEach(button -> {
+             if (button.getText().equals(buttonName)) {
+                 button.click();
+             }
+        });
+    }
+
     public void calcSin() {
         sinButton.click();
         equalsButton.click();
     }
-
-/*
-    public void calcExpr(String text) {
-        calcInput.sendKeys(text, Keys.ENTER);
-    }*/
 
     public CalcPage(WebDriver driver) {
         initElements(driver, this);
