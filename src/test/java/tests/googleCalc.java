@@ -24,7 +24,7 @@ public class googleCalc {
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         searchPage = new SearchPage(driver);
-        calcPage = new CalcPage((driver));
+        calcPage = new CalcPage(driver);
     }
 
     @BeforeEach
@@ -35,20 +35,12 @@ public class googleCalc {
     @Test
     @DisplayName("Кейс 1. Проверка операций с целыми числами")
     public  void test1() {
-        searchPage.search("Калькулятор");
-        assertEquals("Калькулятор", calcPage.getResultPage());
-    }
-
-/*    @Test
-    @DisplayName("Проверка деталей ресурса")
-    public void test2() {
-        searchPage.search("selenium");
+        searchPage.search("Калькулятор (1 + 2) × 3 - 40 ÷ 5");
         assertAll(
-                () -> assertEquals("Selenium", detailsPage.getName()),
-                () -> assertEquals("3.141.59 (14 ноября 2018 года)", detailsPage.getLastVersion()),
-                () -> assertEquals("Apache License 2.0", detailsPage.getLicense())
+                () -> assertEquals("((1 + 2) * 3) - (40 / 5) =", calcPage.getCalcInput()),
+                () -> assertEquals("1", calcPage.getCalcOutput())
         );
-    }*/
+    }
 
 
 
