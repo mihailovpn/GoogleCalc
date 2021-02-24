@@ -1,9 +1,11 @@
 package tests;
 
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.CalcPage;
 import pages.DetailsPage;
 import pages.SearchPage;
 
@@ -13,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class googleCalc {
     private static WebDriver driver;
     private static SearchPage searchPage;
-    private static DetailsPage detailsPage;
+    private static CalcPage calcPage;
 
     @BeforeAll
     public static void init() {
@@ -22,7 +24,7 @@ public class googleCalc {
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         searchPage = new SearchPage(driver);
-        detailsPage = new DetailsPage(driver);
+        calcPage = new CalcPage((driver));
     }
 
     @BeforeEach
@@ -34,11 +36,10 @@ public class googleCalc {
     @DisplayName("Кейс 1. Проверка операций с целыми числами")
     public  void test1() {
         searchPage.search("Калькулятор");
-        searchPage.searchButton.click();
-        //assertEquals(9, searchPage.results.size());
+        assertEquals("Калькулятор", calcPage.getResultPage());
     }
 
-    @Test
+/*    @Test
     @DisplayName("Проверка деталей ресурса")
     public void test2() {
         searchPage.search("selenium");
@@ -47,7 +48,7 @@ public class googleCalc {
                 () -> assertEquals("3.141.59 (14 ноября 2018 года)", detailsPage.getLastVersion()),
                 () -> assertEquals("Apache License 2.0", detailsPage.getLicense())
         );
-    }
+    }*/
 
 
 

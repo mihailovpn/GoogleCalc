@@ -25,6 +25,7 @@ public class SearchPage {
     }
 
     public void search(String text) {
-        searchInput.sendKeys(text);
+        searchInput.sendKeys(text, Keys.ENTER);
+        //searchButton.click();
     }
 }
