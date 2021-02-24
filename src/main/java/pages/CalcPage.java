@@ -17,6 +17,9 @@ public class CalcPage {
     @FindBy(css = "#wp-tabs-container h2[data-attrid*='title']")
     private WebElement name;
 
+    @FindBy(css = "div.ULSxyf h2.Uo8X3b")
+    public WebElement resultPage;
+
     public CalcPage(WebDriver driver) {
         initElements(driver, this);
     }

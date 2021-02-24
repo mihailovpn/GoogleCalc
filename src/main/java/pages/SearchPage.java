@@ -14,14 +14,17 @@ public class SearchPage {
     @FindBy(css = "input.gLFyf.gsfi")
     public WebElement searchInput;
 
-    @FindBy(css = "#search .g")
-    public List<WebElement> results;
+    @FindBy(css = "div.FPdoLc.tfB0Bf input.gNO89b")
+    public WebElement searchButton;
+
+    /*@FindBy(css = "#search .g")
+    public List<WebElement> results;*/
 
     public SearchPage(WebDriver driver) {
         initElements(driver, this);
     }
 
     public void search(String text) {
-        searchInput.sendKeys(text, Keys.ENTER);
+        searchInput.sendKeys(text);
     }
 }

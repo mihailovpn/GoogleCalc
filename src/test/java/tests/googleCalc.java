@@ -31,10 +31,11 @@ public class googleCalc {
     }
 
     @Test
-    @DisplayName("Кейс 1. Про")
+    @DisplayName("Кейс 1. Проверка операций с целыми числами")
     public  void test1() {
         searchPage.search("Калькулятор");
-        assertEquals(9, searchPage.results.size());
+        searchPage.searchButton.click();
+        //assertEquals(9, searchPage.results.size());
     }
 
     @Test
@@ -50,8 +51,8 @@ public class googleCalc {
 
 
 
-    @AfterAll
+    /*@AfterAll
     public static void teardown() {
         driver.quit();
-    }
+    }*/
 }
