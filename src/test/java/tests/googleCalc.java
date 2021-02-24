@@ -1,12 +1,10 @@
 package tests;
 
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.CalcPage;
-import pages.DetailsPage;
 import pages.SearchPage;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -35,16 +33,26 @@ public class googleCalc {
     @Test
     @DisplayName("Кейс 1. Проверка операций с целыми числами")
     public  void test1() {
-        searchPage.search("Калькулятор (1 + 2) × 3 - 40 ÷ 5");
-        assertAll(
+        searchPage.search("Калькулятор");
+        //calcPage.enterCalcButton("(");
+/*        assertAll(
                 () -> assertEquals("((1 + 2) * 3) - (40 / 5) =", calcPage.getCalcInput()),
                 () -> assertEquals("1", calcPage.getCalcOutput())
+        );*/
+    }
+
+    @Test
+    @DisplayName("Кейс 3. Проверка ошибки при отсутствии значения")
+    public  void test3() {
+        searchPage.search("Калькулятор");
+        calcPage.calcSin();
+        assertAll(
+                () -> assertEquals("sin() =", calcPage.getCalcInput()),
+                () -> assertEquals("Error", calcPage.getCalcOutput())
         );
     }
 
-
-
-    /*@AfterAll
+/*    @AfterAll
     public static void teardown() {
         driver.quit();
     }*/

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class CalcPage {
@@ -18,6 +20,15 @@ public class CalcPage {
     @FindBy(css = "span[jsname='VssY5c']")
     public static WebElement calcOutput;
 
+    @FindBy(css = "div.PaQdxb")
+    public List<WebElement> calcButtons;
+
+    @FindBy(css = "div[jsname='aN1RFf']")
+    public WebElement sinButton;
+
+    @FindBy(css = "div[jsname='Pt8tGc']")
+    public WebElement equalsButton;
+
     public String getCalcPage() {
         return calcPage.getText();
     }
@@ -28,6 +39,11 @@ public class CalcPage {
 
     public String getCalcOutput() {
         return calcOutput.getText();
+    }
+
+    public void calcSin() {
+        sinButton.click();
+        equalsButton.click();
     }
 
 /*
